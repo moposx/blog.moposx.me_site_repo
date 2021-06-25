@@ -1,0 +1,417 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Moposx&#39;s Blog</title>
+    <link>https://blog.moposx.me/</link>
+    <description>Recent content on Moposx&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hant</language>
+    <lastBuildDate>Sat, 05 Jun 2021 21:43:18 +0800</lastBuildDate>
+    
+        <atom:link href="https://blog.moposx.me/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>手動更新小狼毫</title>
+        <link>https://blog.moposx.me/posts/update_weasel_manually/</link>
+        <pubDate>Sat, 05 Jun 2021 21:43:18 +0800</pubDate>
+        
+        <guid>https://blog.moposx.me/posts/update_weasel_manually/</guid>
+        <description>Moposx&#39;s Blog https://blog.moposx.me/posts/update_weasel_manually/ -
+&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;小狼毫是 RIME 輸入法在 Windows 平臺的前端。然而，由於開發者主力維護的是 macOS 客戶端鼠鬚管，小狼毫遲遲沒有發佈更新。截至寫作本文時，小狼毫最後一次更新是在 2019 年 6 月 22 日，版本 &lt;code&gt;0.14.3&lt;/code&gt;，此時 macOS 客戶端鼠鬚管最近一次更新是在 2021 年 2 月 13 日。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在停更接近兩年之際，我認爲有必要寫一篇博文來解釋如何基於官方目前的最新發佈版本來手動更新 RIME 有關組件。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_總覽&#34;&gt;總覽&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Weasel 作爲 RIME 前端，內置了核心輸入引擎 librime，利用 OpenCC 進行漢字簡繁轉換，內置了數款輸入方案和符號碼表、詞典等等。這樣我們便知道了如何替換組件以進行更新。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;由於 Windows 的安全機制，在 Weasel 正在運行時，我們無法替換相關組件。因此，在執行下列操作時，&lt;strong&gt;請先停止“小狼毫算法服務”&lt;/strong&gt;。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;對於本文提到的一些表達，約定如下：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;小狼毫的安裝目錄：默認位於 &lt;code&gt;C:\Program Files (x86)\Rime\weasel-{VERSION}&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;小狼毫的用戶數據目錄：默認位於 &lt;code&gt;C:\Users\{USERNAME}\AppData\Roaming\Rime&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_更新_librime&#34;&gt;更新 librime&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;前往 GitHub 下載 librime 的 &lt;a href=&#34;https://github.com/rime/librime/releases&#34;&gt;最新發佈版&lt;/a&gt;，選擇 win32 版本。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解壓縮文件，將 &lt;code&gt;dist\rime.dll&lt;/code&gt; 拷貝到小狼毫的安裝目錄，在提示文件已存在時，選擇覆蓋。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_更新_opencc&#34;&gt;更新 OpenCC&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;欲更新 OpenCC，需要更新轉換庫、轉換配置和轉換詞典。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_更新轉換庫&#34;&gt;更新轉換庫&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_使用預編譯版本&#34;&gt;使用預編譯版本&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;前往 GitHub 下載 opencc 用於 Windows 的 &lt;a href=&#34;https://github.com/BYVoid/OpenCC/wiki/Download&#34;&gt;預編譯版本&lt;/a&gt;，選擇 Windows (32-bit) 版本。截至本文寫作時，這裏的鏈接不可用。如果讀者遇到該問題，請自行編譯 OpenCC，相關操作將會稍後進行說明。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;因爲 OpenCC 預編譯版本不可見，我也不知道文件結構，讓我們快進到手動編譯 OpenCC。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_手動編譯_opencc&#34;&gt;手動編譯 OpenCC&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;從發佈頁面中下載最新的穩定版，選擇 “Source Code (zip)”，將其解壓縮到合適路徑。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安裝 Visual Studio（筆者使用 Visual Studio 2019）和 CMake （須在 PATH 中）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;進入 OpenCC 源代碼目錄，雙擊 &lt;code&gt;build.cmd&lt;/code&gt;，等待編譯完成（完成後編譯輸出窗口會自動關閉）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;進入 &lt;code&gt;build\bin&lt;/code&gt; 目錄，將 &lt;code&gt;opencc.dll&lt;/code&gt; 拷貝到小狼毫的安裝目錄。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_更新轉換配置和詞典&#34;&gt;更新轉換配置和詞典&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_使用預編譯版本_2&#34;&gt;使用預編譯版本&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;（略）&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_手動編譯_opencc_2&#34;&gt;手動編譯 OpenCC&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;編譯過程不再複述。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;進入小狼毫安裝目錄，進入 &lt;code&gt;data&lt;/code&gt;，備份 &lt;code&gt;opencc&lt;/code&gt; 目錄，然後清空其內容。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;拷貝 OpenCC 源碼目錄的 &lt;code&gt;build\data&lt;/code&gt; 下所有 &lt;code&gt;.ocd2&lt;/code&gt; 文件到 &lt;code&gt;opencc&lt;/code&gt; 目錄。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;拷貝 OpenCC 源碼目錄的 &lt;code&gt;data\config&lt;/code&gt; 下所有 &lt;code&gt;.json&lt;/code&gt; 文件到 &lt;code&gt;opencc&lt;/code&gt; 目錄。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_更新_rime_prelude&#34;&gt;更新 rime-prelude&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;前往 rime-prelude 的 GitHub &lt;a href=&#34;https://github.com/rime/rime-prelude&#34;&gt;項目倉庫&lt;/a&gt;，選擇 &amp;#34;Download ZIP&amp;#34;，將其解壓到合適的路徑。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;將壓縮包內所有 &lt;code&gt;.yaml&lt;/code&gt; 文件拷貝到小狼毫安裝目錄的 &lt;code&gt;data&lt;/code&gt; 下，並覆蓋同名文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_更新_luna_pinyin&#34;&gt;更新 luna-pinyin&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;前往 luna-pinyin 的 GitHub &lt;a href=&#34;https://github.com/rime/rime-luna-pinyin&#34;&gt;項目倉庫&lt;/a&gt;，選擇 &amp;#34;Download ZIP&amp;#34;，將其解壓到合適的路徑。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;將壓縮包內所有 &lt;code&gt;.yaml&lt;/code&gt; 文件拷貝到小狼毫安裝目錄的 &lt;code&gt;data&lt;/code&gt; 下，並覆蓋同名文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_更新_rime_essay&#34;&gt;更新 rime-essay&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/rime/rime-luna-pinyin&#34;&gt;項目倉庫&lt;/a&gt;，選擇 &amp;#34;Download ZIP&amp;#34;，將其解壓到合適的路徑。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;將壓縮包內的 &lt;code&gt;essay.txt&lt;/code&gt; 文件拷貝到小狼毫安裝目錄的 &lt;code&gt;data&lt;/code&gt; 下，並覆蓋同名文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_補全遺失文件可選&#34;&gt;補全遺失文件（可選）&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;這一步是非必需的，如果讀者不是全新安裝小狼毫並更新組件，那麼應該不用考慮這些操作。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;如果是全新安裝小狼毫，直接替換組件之後，小狼毫的設置菜單項是不起作用的，原因是用戶目錄下沒有對應的配置文件，然而由於組件更新的緣故，小狼毫沒有自行創建這些文件，故出現故障。要解決這個問題，只需要進入小狼毫的用戶數據目錄，創建兩個空白文件 &lt;code&gt;default.custom.yaml&lt;/code&gt;、&lt;code&gt;weasel.custom.yaml&lt;/code&gt; 即可。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_後續操作&#34;&gt;後續操作&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;重啓“小狼毫算法服務”即可。如有錯誤，請重新部署。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_提示信息&#34;&gt;提示信息&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;這篇文章屬於個人的經驗之談，然而本人屬於 RIME 輕度用戶，對 RIME 不甚瞭解，文章的錯誤紕漏指出還請讀者指正。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+- https://blog.moposx.me/posts/update_weasel_manually/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Arch Linux 禁用開機信息顯示</title>
+        <link>https://blog.moposx.me/posts/archlinux-disable-booting-message/</link>
+        <pubDate>Thu, 15 Apr 2021 21:52:41 +0800</pubDate>
+        
+        <guid>https://blog.moposx.me/posts/archlinux-disable-booting-message/</guid>
+        <description>Moposx&#39;s Blog https://blog.moposx.me/posts/archlinux-disable-booting-message/ -&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Arch Linux 默認會在開機的時候顯示一條信息：&amp;#34;Starting arch-…​&amp;#34;，但它又不會顯示詳細的開機日誌，所以我想關閉掉這條信息。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在 Google 一番搜索之後發現只需要添加一條內核參數即可。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;編輯（需要 root 權限）&lt;code&gt;/etc/default/grub&lt;/code&gt;，加入內核參數 &lt;code&gt;rd.udev.log_level=3&lt;/code&gt;，然後重建 GRUB 配置：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;$ sudo grub-mkconfig -o /boot/grub/grub.cfg&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;之後重啓系統就可以看到效果了。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;詳細的內容可以在 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Silent_boot&#34;&gt;Arch Wiki - Silent Boot&lt;/a&gt; 中找到。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;admonitionblock note&#34;&gt;
+&lt;table&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+當啓用 Kernel Mode Setting（KMS）后（通常是安裝了 NVIDIA 專有驅動程序）就不應該繼續保留 &lt;code&gt;vga=current&lt;/code&gt; 這條內核參數。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+- https://blog.moposx.me/posts/archlinux-disable-booting-message/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>改善 IntelliJ IDEA 在 Windows下的字體渲染</title>
+        <link>https://blog.moposx.me/posts/intellij-idea-improve-font-rendering-on-windows/</link>
+        <pubDate>Sun, 11 Apr 2021 12:41:57 +0800</pubDate>
+        
+        <guid>https://blog.moposx.me/posts/intellij-idea-improve-font-rendering-on-windows/</guid>
+        <description>Moposx&#39;s Blog https://blog.moposx.me/posts/intellij-idea-improve-font-rendering-on-windows/ -&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;作爲一位 IntelliJ IDEA 用戶，在享受它帶來的便捷 Java 開發體驗的同時，卻每每因爲它在 Windows 下相當差勁的字體渲染嘆氣。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_原因探究&#34;&gt;原因探究&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;衆所周知，JetBrains 家的 IDE 都是跑在 JetBrains 自己定製的 JetBrains Runtime(JBR)，也就是經過修改的 JRE 上的。JetBrains 對原本的 JRE 進行了一些 patch 來讓 IDE 能夠正常渲染（如果你在 Arch Linux 下面用過源裏面的 IntelliJ IDEA 或者是其他 JetBrains IDE 的話，應該會體會到這一點，因爲源裏的那幾個 IDE 均未帶有 JBR，而用系統默認的 JRE 的話會遇到一些 bug）。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Java 的 GUI 庫不但老舊還存在一堆 bug。爲了解決字體問題，JetBrains 在 JBR 中預置了多款字體：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;preinstalled-fonts-in-jbr.png&#34; alt=&#34;預置字體列表&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;我個人比較偏好 Source Code Pro 這款字體。但它在 Windows 下面的 IntelliJ IDEA 裏面非常難看：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;source-code-pro-in-idea-on-windows.png&#34; alt=&#34;Win 下面的 IDEA 中 Source Code Pro 的渲染表現&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_解決辦法&#34;&gt;解決辦法&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;方案一&lt;/div&gt;
+&lt;p&gt;使用不在預置列表內的字體。如果你也喜好 Source Code Pro，那麼可以考慮安裝 Source Han Mono 作爲替代，還一并解決了漢字回退問題。此外，更紗黑體也是一款不錯的字體，其寬度等於半個 CJK 全角字符，對齊效果很不錯，且同樣解決了漢字的回退問題，對 Windows 的中文用戶來說非常方便。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;方案二&lt;/div&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;備份 &lt;code&gt;$JBR_DIR/lib/fonts&lt;/code&gt; 目錄（因爲在增量更新 IDEA 時 IDEA 會自動驗證程序文件是否被篡改過。）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在同一個目錄下面新建 &lt;code&gt;fonts&lt;/code&gt; 目錄，並將 Source Code Pro 的最新版本放進去（TTF 和 OTF版本皆可）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;啓動 IDEA。如有必要，重新設置編輯器字體。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;但是，採用這個方案會影響 IntelliJ IDEA 的 OTA 更新。由於增加了自定義字體，在更新 IntelliJ IDEA 時，IntelliJ IDEA 將判斷軟件被修改，從而只能進行全量安裝升級。所以在更新之前，需要暫時將原來的 &lt;code&gt;$JBR_DIR/lib/fonts&lt;/code&gt; 還原。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;下附一張圖，在 IntelliJ IDEA 中選擇 Source Han Mono SC 作爲編輯器字體，可以看看與預置的 Source Code Pro 的渲染效果的區別：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;source-han-mono-in-idea.png&#34; alt=&#34;Win 下面的 IDEA 中 Source Han Mono 的渲染表現&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+- https://blog.moposx.me/posts/intellij-idea-improve-font-rendering-on-windows/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Hello World</title>
+        <link>https://blog.moposx.me/posts/hello-world/</link>
+        <pubDate>Sun, 21 Mar 2021 14:55:23 +0800</pubDate>
+        
+        <guid>https://blog.moposx.me/posts/hello-world/</guid>
+        <description>Moposx&#39;s Blog https://blog.moposx.me/posts/hello-world/ -&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;稍微花了點心思重建下博客，現在你看到的就是第一篇博文了。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;我的博客採用了 Hugo 站點生成器，博文使用 Asciidoc 撰寫。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;我不採用 WordPress 或者 Typecho 的原因是我想要一個靜態的站點，動態站點部署比較麻煩，而我現在沒有那個精力去維護這樣一個動態站點（當然從中可以學到不少知識，這是真的）。靜態站點生成工具中，Hexo 可謂是大名鼎鼎了，但是我不喜歡它，因爲它實在是太！重！了！相比之下，Hugo 一個可執行文件就能完成一切構建工作，而且極度輕量。因此，採用 Hugo 簡直就是理所當然！&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;（隨後發現我錯了，因爲好多主題依然要用到 Node.js）。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;而我沒有用 Markdown 的原因也很簡單：Asciidoc 顯然更加強大。雖然又要支付學習成本，但是 Asciidoc 帶來的愉悅的寫作體驗是 Markdown 無法比擬的。當前，GitHub 是同時支持 Asciidoc 和 Markdown 渲染的，Asciidoc 亦有多種平臺或語言的實現，我推薦用過 Markdown 的朋友都來嘗試一下 Asciidoc。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;我的文章一般會使用中文（in 傳統漢字）。但我試圖用英文撰寫技術類的文章（此乃 Stack Overflow 重度依賴者的覺悟！），希望它會幫助到你（maybe）。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;1551.jpg&#34; alt=&#34;1551&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_瀏覽本站點的注意事項&#34;&gt;瀏覽本站點的注意事項&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;本站點的文章正文內容採用的是明體字，且採用的字形並不完全與現有標準一致。我偏好的字形如下：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一點明體&lt;sup class=&#34;footnote&#34;&gt;[&lt;a id=&#34;_footnoteref_1&#34; class=&#34;footnote&#34; href=&#34;#_footnotedef_1&#34; title=&#34;View footnote.&#34;&gt;1&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;源樣明體 / 源流明體&lt;sup class=&#34;footnote&#34;&gt;[&lt;a id=&#34;_footnoteref_2&#34; class=&#34;footnote&#34; href=&#34;#_footnotedef_2&#34; title=&#34;View footnote.&#34;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;遠古版本細明體（大約是在 Windows XP 裏預裝的那個版本，不過小字號顯示效果不好）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;思源宋體 / Noto Serif CJK 的朝鮮標準版本&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;這類字體的使用在移動設備上受到的限制較多。例如 Android 平臺尚不能自由安裝字體，Android 上的 Chrome 瀏覽器無法直接顯示 CJK 襯線字體，而是需要藉由 Web Fonts 來實現（壞 Chrome，這個問題多年不解決），而 Firefox 則可正常顯示。iOS 則可安裝字體，還請讀者自行研究一下吧。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;如果你和我一樣使用 1080p 的筆記本電腦，運行 Windows 10 系統，那麼 Chrome 下面的字體渲染將會比 Firefox 差很多。嚴格來說這個問題源自 Windows。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;本站點設置了字體功能覆蓋，會阻止瀏覽器使用字體的 &lt;code&gt;locl&lt;/code&gt; 功能，以使這些字體在不同系統或者瀏覽器下有同樣的字形選擇。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;footnotes&#34;&gt;
+&lt;hr/&gt;
+&lt;div class=&#34;footnote&#34; id=&#34;_footnotedef_1&#34;&gt;
+&lt;a href=&#34;#_footnoteref_1&#34;&gt;1&lt;/a&gt;. 一款致力於數字化傳承漢字的字體，開源免費
+&lt;/div&gt;
+&lt;div class=&#34;footnote&#34; id=&#34;_footnotedef_2&#34;&gt;
+&lt;a href=&#34;#_footnoteref_2&#34;&gt;2&lt;/a&gt;. 派生自思源宋體 KR 版本，比較符合傳統印刷用字習慣
+&lt;/div&gt;
+&lt;/div&gt;
+- https://blog.moposx.me/posts/hello-world/ - </description>
+        </item>
+    
+    
+  </channel>
+</rss> 

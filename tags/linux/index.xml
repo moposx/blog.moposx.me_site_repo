@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Moposx&#39;s Blog</title>
+    <link>https://blog.moposx.me/tags/linux/</link>
+    <description>Recent content in Linux on Moposx&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hant</language>
+    <lastBuildDate>Thu, 15 Apr 2021 21:52:41 +0800</lastBuildDate><atom:link href="https://blog.moposx.me/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arch Linux 禁用開機信息顯示</title>
+      <link>https://blog.moposx.me/posts/archlinux-disable-booting-message/</link>
+      <pubDate>Thu, 15 Apr 2021 21:52:41 +0800</pubDate>
+      
+      <guid>https://blog.moposx.me/posts/archlinux-disable-booting-message/</guid>
+      <description>Arch Linux 默認會在開機的時候顯示一條信息：&amp;#34;Starting arch-…​&amp;#34;，但它又不會顯示詳細的開機日誌，所以我想關閉掉這條信息</description>
+    </item>
+    
+  </channel>
+</rss>

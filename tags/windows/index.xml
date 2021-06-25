@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on Moposx&#39;s Blog</title>
+    <link>https://blog.moposx.me/tags/windows/</link>
+    <description>Recent content in Windows on Moposx&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hant</language>
+    <lastBuildDate>Sun, 11 Apr 2021 12:41:57 +0800</lastBuildDate><atom:link href="https://blog.moposx.me/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>改善 IntelliJ IDEA 在 Windows下的字體渲染</title>
+      <link>https://blog.moposx.me/posts/intellij-idea-improve-font-rendering-on-windows/</link>
+      <pubDate>Sun, 11 Apr 2021 12:41:57 +0800</pubDate>
+      
+      <guid>https://blog.moposx.me/posts/intellij-idea-improve-font-rendering-on-windows/</guid>
+      <description>作爲一位 IntelliJ IDEA 用戶，在享受它帶來的便捷 Java 開發體驗的同時，卻每每因爲它在 Windows 下相當差勁的字體渲染嘆氣。 原因探究 衆所周知，JetBrains 家的 IDE 都</description>
+    </item>
+    
+  </channel>
+</rss>

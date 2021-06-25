@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Moposx&#39;s Blog</title>
+    <link>https://blog.moposx.me/tags/</link>
+    <description>Recent content in Tags on Moposx&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hant</language>
+    <lastBuildDate>Sat, 05 Jun 2021 21:43:18 +0800</lastBuildDate><atom:link href="https://blog.moposx.me/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>小狼毫</title>
+      <link>https://blog.moposx.me/tags/%E5%B0%8F%E7%8B%BC%E6%AF%AB/</link>
+      <pubDate>Sat, 05 Jun 2021 21:43:18 +0800</pubDate>
+      
+      <guid>https://blog.moposx.me/tags/%E5%B0%8F%E7%8B%BC%E6%AF%AB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://blog.moposx.me/tags/linux/</link>
+      <pubDate>Thu, 15 Apr 2021 21:52:41 +0800</pubDate>
+      
+      <guid>https://blog.moposx.me/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://blog.moposx.me/tags/windows/</link>
+      <pubDate>Sun, 11 Apr 2021 12:41:57 +0800</pubDate>
+      
+      <guid>https://blog.moposx.me/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>字體</title>
+      <link>https://blog.moposx.me/tags/%E5%AD%97%E9%AB%94/</link>
+      <pubDate>Sun, 11 Apr 2021 12:41:57 +0800</pubDate>
+      
+      <guid>https://blog.moposx.me/tags/%E5%AD%97%E9%AB%94/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>閒聊</title>
+      <link>https://blog.moposx.me/tags/%E9%96%92%E8%81%8A/</link>
+      <pubDate>Sun, 21 Mar 2021 14:55:23 +0800</pubDate>
+      
+      <guid>https://blog.moposx.me/tags/%E9%96%92%E8%81%8A/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

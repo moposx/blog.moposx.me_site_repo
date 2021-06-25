@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Moposx&#39;s Blog</title>
+    <link>https://blog.moposx.me/posts/</link>
+    <description>Recent content in Posts on Moposx&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hant</language>
+    <lastBuildDate>Sat, 05 Jun 2021 21:43:18 +0800</lastBuildDate><atom:link href="https://blog.moposx.me/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>手動更新小狼毫</title>
+      <link>https://blog.moposx.me/posts/update_weasel_manually/</link>
+      <pubDate>Sat, 05 Jun 2021 21:43:18 +0800</pubDate>
+      
+      <guid>https://blog.moposx.me/posts/update_weasel_manually/</guid>
+      <description>小狼毫是 RIME 輸入法在 Windows 平臺的前端。然而，由於開發者主力維護的是 macOS 客戶端鼠鬚管，小狼毫遲遲沒有發佈更新。截至寫作本文時，小狼毫最後一次更新是在 2019</description>
+    </item>
+    
+    <item>
+      <title>Arch Linux 禁用開機信息顯示</title>
+      <link>https://blog.moposx.me/posts/archlinux-disable-booting-message/</link>
+      <pubDate>Thu, 15 Apr 2021 21:52:41 +0800</pubDate>
+      
+      <guid>https://blog.moposx.me/posts/archlinux-disable-booting-message/</guid>
+      <description>Arch Linux 默認會在開機的時候顯示一條信息：&amp;#34;Starting arch-…​&amp;#34;，但它又不會顯示詳細的開機日誌，所以我想關閉掉這條信息</description>
+    </item>
+    
+    <item>
+      <title>改善 IntelliJ IDEA 在 Windows下的字體渲染</title>
+      <link>https://blog.moposx.me/posts/intellij-idea-improve-font-rendering-on-windows/</link>
+      <pubDate>Sun, 11 Apr 2021 12:41:57 +0800</pubDate>
+      
+      <guid>https://blog.moposx.me/posts/intellij-idea-improve-font-rendering-on-windows/</guid>
+      <description>作爲一位 IntelliJ IDEA 用戶，在享受它帶來的便捷 Java 開發體驗的同時，卻每每因爲它在 Windows 下相當差勁的字體渲染嘆氣。 原因探究 衆所周知，JetBrains 家的 IDE 都</description>
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://blog.moposx.me/posts/hello-world/</link>
+      <pubDate>Sun, 21 Mar 2021 14:55:23 +0800</pubDate>
+      
+      <guid>https://blog.moposx.me/posts/hello-world/</guid>
+      <description>稍微花了點心思重建下博客，現在你看到的就是第一篇博文了。 我的博客採用了 Hugo 站點生成器，博文使用 Asciidoc 撰寫。 我不採用 WordPress 或者 Typecho 的原因是我想要一個靜態的</description>
+    </item>
+    
+  </channel>
+</rss>
